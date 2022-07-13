@@ -1,11 +1,15 @@
 import React from 'react';
-import { Routes as Switch, Route } from 'react-router-dom';
+import { Routes as RoutesReact, Route } from 'react-router-dom';
+import Benefits from '../pages/Benefits';
+
+import Login from '../pages/Login';
 
 const Routes: React.FC = () => {
   return (
-    <Switch>
-      <Route path="/" element={<h1>Foi</h1>} />
-    </Switch>
+    <RoutesReact>
+      <Route path="/" element={<Login />} />
+      <Route path="/beneficios" element={<Benefits />} />
+    </RoutesReact>
   );
 };
 
