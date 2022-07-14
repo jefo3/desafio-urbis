@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import api from '../services/api';
 
 interface UserType {
@@ -25,9 +25,14 @@ interface LoginCredentials {
   password: string;
   whitelabelId: string;
 }
+
+interface TypeContextProvider {
+  children: React.ReactNode;
+}
+
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
-export function AuthContextProvider({ children }) {
+export function AuthContextProvider({ children }: TypeContextProvider) {
   const [data, setData] = useState<AuthData>(() => {
     const token = localStorage.getItem('@urbisAPP:token');
     const user = localStorage.getItem('@urbisAPP:user');

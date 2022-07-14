@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import GlobalStyle from './styles/global';
-import Routes from './routes';
 import { AuthContextProvider } from './context/auth';
+import Routes from './routes';
+import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
   return (
