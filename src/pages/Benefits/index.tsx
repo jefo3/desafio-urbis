@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import MenuNotificações from '../../assets/MenuNotificações.svg';
+import Card from '../../components/Card';
 import { useAuth } from '../../context/auth';
 import api from '../../services/api';
-
+import { Cards, Container, Header } from './styles';
 interface BenefitsDataType {
   id: string;
   title: string;
@@ -18,46 +20,66 @@ interface BenefitsDataType {
 
 interface IBenefits {
   statusCode: number;
-	message: string;
-	data: {
-		totalCount: number;
-		page: number;
-		limit: number;
-		data: [BenefitsDataType];
-  }
+  message: string;
+  data: {
+    totalCount: number;
+    page: number;
+    limit: number;
+    data: Array<BenefitsDataType>;
+  };
 }
 
 const Benefits: React.FC = () => {
-  const {data :{user, token}} = useAuth();
-  const [benefits, setBenefits] = useState([{} as BenefitsDataType]);
+  const {
+    data: { user, token },
+  } = useAuth();
+  const [benefits, setBenefits] = useState<Array<BenefitsDataType>>([]);
 
   const loadBenefits = async () => {
-
-    const response = await api.post<IBenefits>(`incentive/search?page=${1}&qtd=${10}&paginable=${true}`);
+    const response = await api.post<IBenefits>(
+      `incentive/search?page=${1}&qtd=${10}&paginable=${true}`,
+    );
     api.defaults.headers.common.Authorization = `Bearer ${token}}`;
 
-    setBenefits([...response.data.data.data])
-
-  }
+    setBenefits([...response.data.data.data]);
+  };
 
   useEffect(() => {
-    loadBenefits()
-  }, [])
+    loadBenefits();
+  }, []);
 
   return (
+    <Container>
+      <Header>
+        <img alt="foto do header" />
+        <div>
+          <input type={'search'} placeholder={'Buscar'} />
+          <select>
+            <option>Esperito santo</option>
+            <option>Ceara</option>
+          </select>
+          <a>Ajuda</a>
+        </div>
+        <div>
+          <span>Olá {user.name}</span>
+          <a>
+            {' '}
+            <img src={MenuNotificações} height={'48px'} width={'48px'} />{' '}
+          </a>
+        </div>
+      </Header>
 
-    <div>
-        <h1>Bem vindo {user.name}</h1>
-      <ul>
+      <Cards>
         {benefits.map((data: BenefitsDataType) => (
-          <li key={data.id}>
-            <strong> { data.title }</strong>
-            <img src={data.image}  />
-            <p> { data.description } </p>
-          </li>
+          <Card
+            id={data.id}
+            image={data.image}
+            discount={data.discount}
+            title={data.title}
+          />
         ))}
-      </ul>
-    </div>
+      </Cards>
+    </Container>
   );
 };
 
