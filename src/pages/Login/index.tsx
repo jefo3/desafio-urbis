@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';

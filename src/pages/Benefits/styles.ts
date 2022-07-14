@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface NotifcationProps {
+  qnt: number;
+}
 
 export const Container = styled.div`
   width: 100%;
@@ -14,10 +18,22 @@ export const Header = styled.header`
   justify-content: space-around;
 `;
 
+export const Notification = styled.div<NotifcationProps>`
+  ${(props) =>
+    props.qnt > 0 &&
+    css`
+      span {
+        color: red;
+        position: absolute;
+      }
+    `}
+  color: red;
+`;
+
 export const Cards = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-gap: 15px;
   list-style: none;
 `;

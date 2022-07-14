@@ -17,7 +17,7 @@ export const CardItem = styled.li`
   padding-bottom: 14px;
 
   &:hover {
-    transform: translateX(10px);
+    transform: translateY(10px);
   }
 
   img {

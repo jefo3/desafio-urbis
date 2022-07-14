@@ -11,13 +11,13 @@ interface BenefitsDataType {
 const Card: React.FC<BenefitsDataType> = ({ id, image, discount, title }) => {
   return (
     <CardItem key={id}>
-      <img src={image} />
+      <img src={image} alt="" />
 
       <CardArea>
         <strong> {title}</strong>
         <p> {discount} </p>
       </CardArea>
-      <button> Usar benefício </button>
+      <button type="submit"> Usar benefício </button>
     </CardItem>
   );
 };

@@ -3,7 +3,8 @@ import MenuNotificações from '../../assets/MenuNotificações.svg';
 import Card from '../../components/Card';
 import { useAuth } from '../../context/auth';
 import api from '../../services/api';
-import { Cards, Container, Header } from './styles';
+import { Cards, Container, Header, Notification } from './styles';
+
 interface BenefitsDataType {
   id: string;
   title: string;
@@ -53,19 +54,27 @@ const Benefits: React.FC = () => {
       <Header>
         <img alt="foto do header" />
         <div>
-          <input type={'search'} placeholder={'Buscar'} />
+          <input type="search" placeholder="Buscar" />
           <select>
             <option>Esperito santo</option>
             <option>Ceara</option>
           </select>
-          <a>Ajuda</a>
+          <a href="#a">Ajuda</a>
         </div>
         <div>
           <span>Olá {user.name}</span>
-          <a>
-            {' '}
-            <img src={MenuNotificações} height={'48px'} width={'48px'} />{' '}
-          </a>
+          <Notification qnt={0}>
+            {false && <span> 1 </span>}
+            <a href="#a">
+              {' '}
+              <img
+                src={MenuNotificações}
+                height="48px"
+                width="48px"
+                alt=""
+              />{' '}
+            </a>
+          </Notification>
         </div>
       </Header>
 
