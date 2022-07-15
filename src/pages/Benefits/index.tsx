@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import MenuNotificações from '../../assets/MenuNotificações.svg';
+import { BiUserCircle } from 'react-icons/bi';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import logoEmpresa from '../../assets/logoEmpresa.svg';
 import Card from '../../components/Card';
 import { useAuth } from '../../context/auth';
 import api from '../../services/api';
-import { Cards, Container, Header, Notification } from './styles';
+import {
+  Cards,
+  Container,
+  Header,
+  InfoUser,
+  Notification,
+  Shared,
+} from './styles';
 
 interface BenefitsDataType {
   id: string;
@@ -52,30 +61,30 @@ const Benefits: React.FC = () => {
   return (
     <Container>
       <Header>
-        <img alt="foto do header" />
-        <div>
+        <img src={logoEmpresa} alt="foto do header" />
+        <Shared>
           <input type="search" placeholder="Buscar" />
           <select>
             <option>Esperito santo</option>
             <option>Ceara</option>
           </select>
           <a href="#a">Ajuda</a>
-        </div>
-        <div>
+        </Shared>
+        <InfoUser>
           <span>Olá {user.name}</span>
-          <Notification qnt={0}>
-            {false && <span> 1 </span>}
+          <Notification qnt={1}>
+            {true && <span> 4 </span>}
+
             <a href="#a">
-              {' '}
-              <img
-                src={MenuNotificações}
-                height="48px"
-                width="48px"
-                alt=""
-              />{' '}
+              <IoMdNotificationsOutline size={22} color="#5F6368" />
             </a>
           </Notification>
-        </div>
+          <div>
+            <a href="#a">
+              <BiUserCircle size={22} color="#5F6368" />
+            </a>
+          </div>
+        </InfoUser>
       </Header>
 
       <Cards>

@@ -1,3 +1,4 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
 
 export const CardItem = styled.li`
@@ -39,7 +40,7 @@ export const CardItem = styled.li`
     transition: background-color 0.2s;
 
     &:hover {
-      background-color: #24e09f;
+      background-color: ${shade(0.2, '#18c78a')};
     }
   }
 `;

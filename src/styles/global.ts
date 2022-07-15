@@ -22,4 +22,10 @@ export default createGlobalStyle`
   button{
     cursor: pointer;
   }
+
+  a{
+    &:visited{
+      color: inherit;
+    }
+  }
 `;
