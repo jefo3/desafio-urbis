@@ -21,10 +21,7 @@ const Login: React.FC = () => {
   };
   return (
     <Container>
-      <Banner>
-        <h1>Atraia e Fidelize mais Clientes</h1>
-        <h2>Crie o Clube de Vantagens da sua empresa</h2>
-      </Banner>
+      <Banner />
 
       <Content>
         <form onSubmit={handleSubmit(handleLogin)}>
