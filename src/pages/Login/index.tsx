@@ -34,7 +34,9 @@ const Login: React.FC = () => {
   return (
     <>
       <Container>
-        <Banner />
+        <Banner>
+          <h1>Urbis</h1>
+        </Banner>
 
         <Content>
           <form onSubmit={handleSubmit(handleLogin)}>

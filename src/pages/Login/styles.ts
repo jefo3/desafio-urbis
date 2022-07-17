@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import backGroundUrbis from '../../assets/backGroundUrbis.svg';
+import { shade } from 'polished';
+import urbislogo from '../../assets/urbislogo.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -15,9 +16,11 @@ export const Banner = styled.div`
   flex-direction: column;
   background-color: #1d0e60;
   color: #fff;
+  align-items: flex-start;
 
-  align-items: center;
   h1 {
+    padding: 30px 60px;
+    font-size: 60px;
     font-weight: bold;
   }
 `;
@@ -68,6 +71,10 @@ export const Content = styled.div`
       border-radius: 8px;
       color: #fff;
       margin-top: 30px;
+
+      &:hover {
+        background: ${shade(0.2, '#3483fa')};
+      }
     }
   }
 `;
