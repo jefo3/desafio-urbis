@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BiUserCircle } from 'react-icons/bi';
+
 import logoEmpresa from '../../assets/logoEmpresa.svg';
 import Card from '../../components/Card';
 import { useAuth } from '../../context/auth';
@@ -7,6 +7,7 @@ import api from '../../services/api';
 import { Cards, Container, Header, InfoUser, Shared } from './styles';
 
 import Notification from '../../components/Notification';
+import Logout from '../../components/Logout';
 
 interface BenefitsDataType {
   id: string;
@@ -68,12 +69,7 @@ const Benefits: React.FC = () => {
           <span>Olá {user.name}</span>
 
           <Notification qnt={1} />
-
-          <div>
-            <a href="#a">
-              <BiUserCircle size={22} color="#5F6368" />
-            </a>
-          </div>
+          <Logout />
         </InfoUser>
       </Header>
 

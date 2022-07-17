@@ -69,12 +69,13 @@ export const Item = styled.div<ItemNotication>`
     font-size: 12px;
     border: 0;
     background: none;
-    color: black;
+    color: #18c78a;
     opacity: 0.6;
     padding: 0 5px;
     margin: 0 5px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
+
   ${(props) =>
     props.unread &&
     css`

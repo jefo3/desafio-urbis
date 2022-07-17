@@ -59,8 +59,8 @@ export function AuthContextProvider({ children }: TypeContextProvider) {
   };
 
   const logout = (): void => {
-    localStorage.remove('@urbisAPP:token');
-    localStorage.remove('@urbisAPP:user');
+    localStorage.clear();
+
     setData({} as AuthData);
   };
 
