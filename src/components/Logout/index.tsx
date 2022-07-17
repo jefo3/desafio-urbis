@@ -26,7 +26,7 @@ const Logout: React.FC = () => {
       <LogoutContainer visible={visible}>
         <button type="button" onClick={() => logoutSession()}>
           <FiPower size={18} color="#e02041" />
-          SAIR
+          Sair
         </button>
       </LogoutContainer>
     </Container>
