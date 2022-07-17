@@ -1,8 +1,4 @@
-import styled, { css } from 'styled-components';
-
-interface NotifcationProps {
-  qnt: number;
-}
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -72,7 +68,7 @@ export const InfoUser = styled.div`
     font-size: 21px;
   }
 
-  div {
+  & > div {
     display: flex;
     width: 28px;
     height: 28px;
@@ -81,48 +77,7 @@ export const InfoUser = styled.div`
     border-radius: 50%;
     background-color: #f8f8f8;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    transition: transform 0.2s ease-in-out;
-
-    &:hover {
-      transform: scale(1.2);
-    }
   }
-`;
-
-export const Notification = styled.div<NotifcationProps>`
-  position: relative;
-  display: flex;
-  width: 28px;
-  height: 28px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #f8f8f8;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 0 8px 0 20px;
-
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.2);
-  }
-
-  ${(props) =>
-    props.qnt > 0 &&
-    css`
-      span {
-        position: absolute;
-        text-align: center;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        font-size: 12px;
-        top: -10px;
-        color: #f8f8f8;
-        background-color: red;
-      }
-    `}
 `;
 
 export const Cards = styled.ul`

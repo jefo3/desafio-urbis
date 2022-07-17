@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { BiUserCircle } from 'react-icons/bi';
-import { IoMdNotificationsOutline } from 'react-icons/io';
 import logoEmpresa from '../../assets/logoEmpresa.svg';
 import Card from '../../components/Card';
 import { useAuth } from '../../context/auth';
 import api from '../../services/api';
-import {
-  Cards,
-  Container,
-  Header,
-  InfoUser,
-  Notification,
-  Shared,
-} from './styles';
+import { Cards, Container, Header, InfoUser, Shared } from './styles';
+
+import Notification from '../../components/Notification';
 
 interface BenefitsDataType {
   id: string;
@@ -65,20 +59,16 @@ const Benefits: React.FC = () => {
         <Shared>
           <input type="search" placeholder="Buscar" />
           <select>
-            <option>Esperito santo</option>
-            <option>Ceara</option>
+            <option>Espírito Santo</option>
+            <option>Ceará</option>
           </select>
           <a href="#a">Ajuda</a>
         </Shared>
         <InfoUser>
           <span>Olá {user.name}</span>
-          <Notification qnt={1}>
-            {true && <span> 4 </span>}
 
-            <a href="#a">
-              <IoMdNotificationsOutline size={22} color="#5F6368" />
-            </a>
-          </Notification>
+          <Notification qnt={1} />
+
           <div>
             <a href="#a">
               <BiUserCircle size={22} color="#5F6368" />
