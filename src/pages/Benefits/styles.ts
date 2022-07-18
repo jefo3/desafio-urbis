@@ -83,7 +83,36 @@ export const InfoUser = styled.div`
 export const Cards = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
   grid-gap: 15px;
   list-style: none;
+`;
+
+export const PagenateController = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  //justify-content: space-evenly;
+  /* position: absolute; */
+  /* top: calc(50% + 50px);
+  z-index: 1001; */
+
+  /* padding: 24px; */
+
+  button {
+    height: 32px;
+    border: none;
+    color: #18c78a;
+    background-color: #fcfcfc;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+
+    margin: 20px;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
 `;

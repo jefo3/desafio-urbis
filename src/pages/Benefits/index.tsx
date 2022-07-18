@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
+import { FaArrowCircleRight, FaArrowCircleLeft } from 'react-icons/fa';
 import logoEmpresa from '../../assets/logoEmpresa.svg';
 import Card from '../../components/Card';
 import { useAuth } from '../../context/auth';
 import api from '../../services/api';
-import { Cards, Container, Header, InfoUser, Shared } from './styles';
+import {
+  Cards,
+  Container,
+  Header,
+  InfoUser,
+  Shared,
+  PagenateController,
+} from './styles';
 
 import Notification from '../../components/Notification';
 import Logout from '../../components/Logout';
@@ -38,20 +45,35 @@ const Benefits: React.FC = () => {
   const {
     data: { user, token },
   } = useAuth();
+
   const [benefits, setBenefits] = useState<Array<BenefitsDataType>>([]);
 
+  const [maxItemPaginate, setMaxItemPaginate] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const loadBenefits = async () => {
     const response = await api.post<IBenefits>(
-      `incentive/search?page=${1}&qtd=${10}&paginable=${true}`,
+      `incentive/search?page=${currentPage}&qtd=${4}&paginable=${true}`,
     );
     api.defaults.headers.common.Authorization = `Bearer ${token}}`;
-
+    setMaxItemPaginate(response.data.data.totalCount);
     setBenefits([...response.data.data.data]);
+  };
+
+  const nextPage = () => {
+    if (currentPage + 1 <= maxItemPaginate) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const backPage = () => {
+    if (currentPage - 1 >= 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   useEffect(() => {
     loadBenefits();
-  }, []);
+  }, [currentPage]);
 
   return (
     <Container>
@@ -63,7 +85,7 @@ const Benefits: React.FC = () => {
             <option>Espírito Santo</option>
             <option>Ceará</option>
           </select>
-          <a href="#a">Ajuda</a>
+          <a href="#ajuda">Ajuda</a>
         </Shared>
         <InfoUser>
           <span>Olá {user.name}</span>
@@ -83,6 +105,15 @@ const Benefits: React.FC = () => {
           />
         ))}
       </Cards>
+
+      <PagenateController>
+        <button type="submit" onClick={() => backPage()}>
+          <FaArrowCircleLeft size={32} />
+        </button>
+        <button type="submit" onClick={() => nextPage()}>
+          <FaArrowCircleRight size={32} />
+        </button>
+      </PagenateController>
     </Container>
   );
 };
