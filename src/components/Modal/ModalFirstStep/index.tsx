@@ -2,9 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import Modal from 'react-modal';
+import { format } from 'date-fns';
 import { ButtonRadio, Content, Footer, Header } from './styles';
 import ModalAvaliacaoSegundStep from '../ModalSegundStep';
 import star from '../../../assets/star.svg';
@@ -16,7 +17,7 @@ interface ModalProps {
   visible: boolean;
   setVisible: (visible: boolean) => void;
   idItem: string;
-  hora: Date;
+  date: string;
 }
 Modal.setAppElement('#root');
 
@@ -27,7 +28,7 @@ const ModalAvaliacao: React.FC<ModalProps> = ({
   subtitle,
   visible,
   idItem,
-  hora,
+  date,
 }) => {
   const { register, handleSubmit, reset } = useForm();
   const [selectFirstDiv, setSelectFistDiv] = useState(false);
@@ -51,7 +52,6 @@ const ModalAvaliacao: React.FC<ModalProps> = ({
     const { respostaFistPart } = data;
 
     if (respostaFistPart === 'sim') {
-      console.log('next modal');
       openNextModal();
     } else if (respostaFistPart === 'nao') {
       closeModal();
@@ -92,7 +92,7 @@ const ModalAvaliacao: React.FC<ModalProps> = ({
           <Content select={selectFirstDiv}>
             <p>
               {`Identificamos que você acessou o site do Parceiro Tal no dia
-              ${hora}. Você pode nos dizer se utilizou um benefício na ocasião?`}
+              ${date}. Você pode nos dizer se utilizou um benefício na ocasião?`}
             </p>
             <ButtonRadio
               select={selectFirstDiv}

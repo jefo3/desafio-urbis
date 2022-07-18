@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import { formatDistance, subMinutes } from 'date-fns';
+import { format, formatDistance, subMinutes } from 'date-fns';
 import React, { useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { IoMdNotificationsOutline } from 'react-icons/io';
@@ -18,7 +18,7 @@ const Notification: React.FC<NotifcationProps> = ({ qnt }) => {
   const [visibleNotification, setVisibleNotification] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
   const [idItemSelect, setIdItemSelect] = useState('');
-  const [horaItemSelect, setHoraItemSelect] = useState({} as Date);
+  const [horaItemSelect, setHoraItemSelect] = useState('');
 
   const { qntNotification, data } = useNotification();
 
@@ -48,7 +48,9 @@ const Notification: React.FC<NotifcationProps> = ({ qnt }) => {
                         setIdItemSelect(itemNotification.id);
                         setVisibleModal(true);
                         setVisibleNotification(false);
-                        setHoraItemSelect(itemNotification.hora as Date);
+                        setHoraItemSelect(
+                          format(itemNotification.hora as Date, 'dd/MM/yyyy'),
+                        );
                       }}
                     >
                       AVALIAR
@@ -69,7 +71,7 @@ const Notification: React.FC<NotifcationProps> = ({ qnt }) => {
         setVisible={setVisibleModal}
         visible={visibleModal}
         idItem={idItemSelect}
-        hora={horaItemSelect}
+        date={horaItemSelect}
       />
     </>
   );
