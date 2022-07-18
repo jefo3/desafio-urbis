@@ -4,12 +4,14 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import Modal from 'react-modal';
+import { useNotification } from '../../../context/notification';
 import { Content, Footer, Header } from './styles';
 
 interface ModalProps {
   image: string;
   title: string;
   visible: boolean;
+  idItem: string;
   setVisible: (visible: boolean) => void;
 }
 Modal.setAppElement('#root');
@@ -19,8 +21,12 @@ const ModalAvaliacaoFinalStep: React.FC<ModalProps> = ({
   setVisible,
   title,
   visible,
+  idItem,
 }) => {
+  const { removeItem } = useNotification();
   const closeModal = () => {
+    const id = idItem;
+    removeItem({ id });
     setVisible(false);
   };
 

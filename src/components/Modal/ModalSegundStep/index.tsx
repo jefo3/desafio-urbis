@@ -14,6 +14,7 @@ interface ModalProps {
   title: string;
   subtitle: string;
   visible: boolean;
+  idItem: string;
   setVisible: (visible: boolean) => void;
 }
 Modal.setAppElement('#root');
@@ -24,9 +25,10 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
   title,
   subtitle,
   visible,
+  idItem,
 }) => {
   const { register, handleSubmit, reset } = useForm();
-  const [idItem, setIdItem] = useState(0);
+  const [idItemAvaliacao, setIdItemAvaliacao] = useState(0);
   const [selectedItem, setSelectedItem] = useState(0);
 
   const [visibleNextModal, setVisibleNextModal] = useState(false);
@@ -34,7 +36,7 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
   const closeModal = () => {
     setVisible(false);
     setSelectedItem(0);
-    setIdItem(0);
+    setIdItemAvaliacao(0);
     reset();
   };
 
@@ -92,11 +94,11 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
 
             <Evaluation
               selectedItem={selectedItem}
-              idItem={idItem}
-              onMouseOut={() => setIdItem(0)}
+              idItemAvaliacao={idItemAvaliacao}
+              onMouseOut={() => setIdItemAvaliacao(0)}
             >
               <ItemEvaluation
-                onMouseOver={() => setIdItem(1)}
+                onMouseOver={() => setIdItemAvaliacao(1)}
                 onClick={() => setSelectedItem(1)}
               >
                 <label htmlFor="Irrelevante">
@@ -110,7 +112,7 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
                 </label>
               </ItemEvaluation>
               <ItemEvaluation
-                onMouseOver={() => setIdItem(2)}
+                onMouseOver={() => setIdItemAvaliacao(2)}
                 onClick={() => setSelectedItem(2)}
               >
                 <label htmlFor="Pouco_relevante">
@@ -124,7 +126,7 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
                 </label>
               </ItemEvaluation>
               <ItemEvaluation
-                onMouseOver={() => setIdItem(3)}
+                onMouseOver={() => setIdItemAvaliacao(3)}
                 onClick={() => setSelectedItem(3)}
               >
                 <label htmlFor="Indiferente">
@@ -138,7 +140,7 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
                 </label>
               </ItemEvaluation>
               <ItemEvaluation
-                onMouseOver={() => setIdItem(4)}
+                onMouseOver={() => setIdItemAvaliacao(4)}
                 onClick={() => setSelectedItem(4)}
               >
                 <label htmlFor="Relevante">
@@ -152,7 +154,7 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
                 </label>
               </ItemEvaluation>
               <ItemEvaluation
-                onMouseOver={() => setIdItem(5)}
+                onMouseOver={() => setIdItemAvaliacao(5)}
                 onClick={() => setSelectedItem(5)}
               >
                 <label htmlFor="Muito_relevante">
@@ -183,6 +185,7 @@ const ModalAvaliacaoSegundStep: React.FC<ModalProps> = ({
         setVisible={setVisibleNextModal}
         visible={visibleNextModal}
         title="Sucesso!"
+        idItem={idItem}
       />
     </>
   );

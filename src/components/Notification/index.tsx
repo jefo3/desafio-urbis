@@ -17,6 +17,8 @@ const Notification: React.FC<NotifcationProps> = ({ qnt }) => {
   const { user } = useAuth().data;
   const [visibleNotification, setVisibleNotification] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
+  const [idItemSelect, setIdItemSelect] = useState('');
+  const [horaItemSelect, setHoraItemSelect] = useState({} as Date);
 
   const { qntNotification, data } = useNotification();
 
@@ -43,8 +45,10 @@ const Notification: React.FC<NotifcationProps> = ({ qnt }) => {
                     <time>{convertDate(itemNotification.hora as Date)}</time>
                     <button
                       onClick={() => {
+                        setIdItemSelect(itemNotification.id);
                         setVisibleModal(true);
                         setVisibleNotification(false);
+                        setHoraItemSelect(itemNotification.hora as Date);
                       }}
                     >
                       AVALIAR
@@ -53,7 +57,7 @@ const Notification: React.FC<NotifcationProps> = ({ qnt }) => {
                 );
               })
             ) : (
-              <p> ainda não tem item</p>
+              <p> ainda não tem item </p>
             )}
           </Scrollbars>
         </NotificationList>
@@ -64,6 +68,8 @@ const Notification: React.FC<NotifcationProps> = ({ qnt }) => {
         subtitle={`${user.name}, você usou um benefício?`}
         setVisible={setVisibleModal}
         visible={visibleModal}
+        idItem={idItemSelect}
+        hora={horaItemSelect}
       />
     </>
   );

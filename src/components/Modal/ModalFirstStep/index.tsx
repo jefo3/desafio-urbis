@@ -15,6 +15,8 @@ interface ModalProps {
   subtitle: string;
   visible: boolean;
   setVisible: (visible: boolean) => void;
+  idItem: string;
+  hora: Date;
 }
 Modal.setAppElement('#root');
 
@@ -24,6 +26,8 @@ const ModalAvaliacao: React.FC<ModalProps> = ({
   title,
   subtitle,
   visible,
+  idItem,
+  hora,
 }) => {
   const { register, handleSubmit, reset } = useForm();
   const [selectFirstDiv, setSelectFistDiv] = useState(false);
@@ -87,9 +91,8 @@ const ModalAvaliacao: React.FC<ModalProps> = ({
 
           <Content select={selectFirstDiv}>
             <p>
-              Identificamos que você acessou o site do Parceiro Tal no dia
-              00/00/0000. Você pode nos dizer se utilizou um benefício na
-              ocasião?
+              {`Identificamos que você acessou o site do Parceiro Tal no dia
+              ${hora}. Você pode nos dizer se utilizou um benefício na ocasião?`}
             </p>
             <ButtonRadio
               select={selectFirstDiv}
@@ -141,6 +144,7 @@ const ModalAvaliacao: React.FC<ModalProps> = ({
         image={star}
         setVisible={setVisibleNextModal}
         visible={visibleNextModal}
+        idItem={idItem}
       />
     </>
   );

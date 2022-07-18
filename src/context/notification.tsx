@@ -10,10 +10,15 @@ interface NotificationData {
   unread?: boolean;
 }
 
+interface RemoveType {
+  id: string;
+}
+
 interface NotificationContextProps {
   data: Array<NotificationData>;
   qntNotification: number;
   addItem: ({ id, message, worn }: NotificationData) => void;
+  removeItem: ({ id }: RemoveType) => void;
 }
 
 interface TypeContextProvider {
@@ -27,16 +32,26 @@ const NotificationContext = createContext<NotificationContextProps>(
 export function NotificationContextProvider({ children }: TypeContextProvider) {
   const [data, setData] = useState<Array<NotificationData>>([]);
   const [qntNotification, setQntNotification] = useState(0);
+
   const addItem = ({ id, hora, message, worn }: NotificationData): void => {
     setData([...data, { hora, id, message, worn }]);
   };
 
+  const removeItem = ({ id }: RemoveType): void => {
+    console.log(
+      'removido',
+      data.filter((benefits) => benefits.id !== id),
+    );
+    setData(data.filter((benefits) => benefits.id !== id));
+  };
   useEffect(() => {
     setQntNotification(data.length);
   }, [data]);
 
   return (
-    <NotificationContext.Provider value={{ data, qntNotification, addItem }}>
+    <NotificationContext.Provider
+      value={{ data, qntNotification, addItem, removeItem }}
+    >
       {children}
     </NotificationContext.Provider>
   );

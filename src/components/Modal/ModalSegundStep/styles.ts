@@ -2,7 +2,7 @@ import { shade } from 'polished';
 import styled, { css } from 'styled-components';
 
 interface idItemEvaluation {
-  idItem: number;
+  idItemAvaliacao: number;
   selectedItem: number;
 }
 
@@ -85,7 +85,7 @@ export const Evaluation = styled.ul<idItemEvaluation>`
     border: none;
   }
 
-  li:nth-child(-n + ${(props) => props.idItem}) {
+  li:nth-child(-n + ${(props) => props.idItemAvaliacao}) {
     background: rgba(255, 161, 0, 0.3);
     border: none;
   }
